@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import React from 'react'
+import TaskList from './TaskList'
 
 function App() {
   const [tasks, setTasks] = useState([]);
@@ -60,17 +61,9 @@ function App() {
     </div>
     <br />
     <button onClick={handleAddTask}>Agregar tarea</button>
-    <div className='tasks-area'>
-    {tasks.map((task, index) => (
-        <li key={index}>
-        <span className="task-text">{task.text}</span>
-        <span className='task-time'>{task.time}</span>
-          <button onClick={() => handleDeleteTask(index)}><i class="fa-solid fa-trash"></i></button>
-        </li>
-      ))}
-    </div>
+    <TaskList tasks={tasks} handleDeleteTask={handleDeleteTask} />
     <ul>
-    </ul>
+    </ul>    
   </div>
   <footer>
     <p><a href="https://juan-agustin-avalos.netlify.app/">Creado por Juan A. | © - Todos los derechos reservados 2024</a></p>
