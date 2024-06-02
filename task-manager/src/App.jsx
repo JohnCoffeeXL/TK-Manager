@@ -2,69 +2,32 @@ import { useState, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import React from 'react'
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import TaskList from './TaskList'
+import Home from './Home'
+import Contact from './Contact'
+import Users from "./Users"
 
 function App() {
-  const [tasks, setTasks] = useState([]);
-  const [newTask, setNewTask] = useState('');
-  const [taskTime, setTaskTime] = useState('-');
-
-  useEffect(() => {
-    const storedTasks = localStorage.getItem('tasks');
-    if (storedTasks) {
-      setTasks(JSON.parse(storedTasks));
-    }
-  }, []);
-
-  const saveTasksToLocalStorage = (tasksToSave) => {
-    localStorage.setItem('tasks', JSON.stringify(tasksToSave));
-  };
-
-  const handleInputChange = (event) => {
-    setNewTask(event.target.value);
-  };
-
-  const handleTimeChange = (event) => {
-    setTaskTime(event.target.value);
-  };
-
-  const handleAddTask = () => {
-    if (newTask.trim() !== '') {
-      const newTaskObject = { text: newTask, time: taskTime };
-      const updatedTasks = [...tasks, newTaskObject];
-      setTasks(updatedTasks);
-      saveTasksToLocalStorage(updatedTasks);
-      setNewTask('');
-      setTaskTime('-');
-    }
-  };
-
-  const handleDeleteTask = (index) => {
-    const updatedTasks = [...tasks];
-    updatedTasks.splice(index, 1);
-    setTasks(updatedTasks);
-    saveTasksToLocalStorage(updatedTasks);
-  };
-
+  
   return (
     <>
-  <div className='container'>
-    <h1>TK-Manager</h1>
-    <h5>-Hecho por Juan Agustín Avalos🙃-</h5>
-    <div className='task-content'>
-      <h2 className='task-title'>Tarea<b>*</b></h2>
-      <input type="text" placeholder='Escribe la tarea a realizar...' value={newTask} onChange={handleInputChange}/>
-    </div>
-    <div className='task-content'>
-    <h2 className='task-title'>Horario</h2>
-    <input type="time" value={taskTime} onChange={handleTimeChange}/>
-    </div>
-    <br />
-    <button onClick={handleAddTask}>Agregar tarea</button>
-    <TaskList tasks={tasks} handleDeleteTask={handleDeleteTask} />
-    <ul>
-    </ul>    
-  </div>
+<Router>
+<nav>
+<ul>
+<li><Link to="/">Home</Link></li>
+<li><Link to="/users">Users</Link></li>
+<li><Link to="/contact">Contact</Link></li>
+<li><Link to="/tasks">Tasks</Link></li>
+</ul>
+</nav>
+<Routes>
+<Route path="/" element={<Home />} />
+<Route path="/users" element={<Users />} />
+<Route path="/contact" element={<Contact />} />
+<Route path="/tasks" element={<TaskList />} />
+</Routes>
+</Router>
   <footer>
     <p><a href="https://juan-agustin-avalos.netlify.app/">Creado por Juan A. | © - Todos los derechos reservados 2024</a></p>
   </footer>

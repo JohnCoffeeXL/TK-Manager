@@ -1,19 +1,65 @@
 import React from "react"
 import { useEffect, useState } from "react";
 
-function TaskList({ tasks, handleDeleteTask }) {
-    const [apiTask, setApiTask] = useState([]);
+function TaskList() {
+const [tasks, setTasks] = useState([]);
+const [newTask, setNewTask] = useState('');  
+const [taskTime, setTaskTime] = useState('-');
 
-    React.useEffect(() => {
-        fetch('https://jsonplaceholder.typicode.com/todos')
-        .then((response) => response.json())
-        .then((data) => setApiTask(data))
-        .catch((error) => console.error('Error fetching tasks:', error));
-        }, []); 
+  useEffect(() => {
+    const storedTasks = localStorage.getItem('tasks');
+    if (storedTasks) {
+      setTasks(JSON.parse(storedTasks));
+    }
+  }, []);
+
+  const saveTasksToLocalStorage = (tasksToSave) => {
+    localStorage.setItem('tasks', JSON.stringify(tasksToSave));
+  };
+
+  const handleInputChange = (event) => {
+    setNewTask(event.target.value);
+  };
+
+  const handleTimeChange = (event) => {
+    setTaskTime(event.target.value);
+  };
+
+  const handleAddTask = () => {
+    if (newTask.trim() !== '') {
+      const newTaskObject = { text: newTask, time: taskTime };
+      const updatedTasks = [...tasks, newTaskObject];
+      setTasks(updatedTasks);
+      saveTasksToLocalStorage(updatedTasks);
+      setNewTask('');
+      setTaskTime('-');
+    }
+  };
+
+  const handleDeleteTask = (index) => {
+    const updatedTasks = [...tasks];
+    updatedTasks.splice(index, 1);
+    setTasks(updatedTasks);
+    saveTasksToLocalStorage(updatedTasks);
+  };
 
     return (
         <>
-<div className='tasks-area'>
+        <div>Tasks</div>
+    <div className='container'>
+    <h1>TK-Manager</h1>
+    <h5>-Hecho por Juan Agustín Avalos🙃-</h5>
+    <div className='task-content'>
+      <h2 className='task-title'>Tarea<b>*</b></h2>
+      <input type="text" placeholder='Escribe la tarea a realizar...' value={newTask} onChange={handleInputChange}/>
+    </div>
+    <div className='task-content'>
+    <h2 className='task-title'>Horario</h2>
+    <input type="time" value={taskTime} onChange={handleTimeChange}/>
+    </div>
+    <br />
+    <button onClick={handleAddTask}>Agregar tarea</button>
+    <div className='tasks-area'>
     {tasks.map((task, index) => (
         <li key={index}>
         <span className="task-text">{task.text}</span>
@@ -22,15 +68,9 @@ function TaskList({ tasks, handleDeleteTask }) {
         </li>
       ))}
     </div>
-
-    <div className='tasks-area api'>
-        <h4>Ejemplo de Lista (API)</h4>
-        <ul>
-        {apiTask.map((task) => (
-        <li key={task.id}>{task.title}</li>
-        ))}
-        </ul>
-    </div>
+    <ul>
+    </ul>    
+  </div>
         </>
     )
 }
