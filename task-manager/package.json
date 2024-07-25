@@ -3,8 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://johncoffeexl.github.io/TK-Manager"
-,
+  "homepage": "https://johncoffeexl.github.io/TK-Manager",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
