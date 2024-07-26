@@ -13,23 +13,23 @@ function App() {
       <Router>
         <nav className="navbar navbar-expand-lg">
           <div className="container-fluid">
-            <Link className="navbar-brand" to="/TK-Manager/">TK-Manager</Link>
+            <Link className="navbar-brand" to="/">TK-Manager</Link>
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span className="navbar-toggler-icon"><i class="fa-solid fa-bars"></i></span>
             </button>
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item">
-                  <Link className="nav-link active" aria-current="page" to="/TK-Manager/">Home</Link>
+                  <Link className="nav-link active" aria-current="page" to="/">Home</Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/TK-Manager/users">Users</Link>
+                  <Link className="nav-link" to="/users">Users</Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/TK-Manager/contact">Contact</Link>
+                  <Link className="nav-link" to="/contact">Contact</Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/TK-Manager/tasks">Tasks</Link>
+                  <Link className="nav-link" to="/tasks">Tasks</Link>
                 </li>
               </ul>
               <form className="d-flex" role="search">
@@ -40,10 +40,10 @@ function App() {
           </div>
         </nav>
         <Routes>
-          <Route path="/TK-Manager/" element={<Home />} />
-          <Route path="/TK-Manager/users" element={<Users />} />
-          <Route path="/TK-Manager/contact" element={<Contact />} />
-          <Route path="/TK-Manager/tasks" element={<TaskList />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/users" element={<Users />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/tasks" element={<TaskList />} />
         </Routes>
       </Router>
       <footer>
