@@ -1,7 +1,7 @@
 import React from "react"
 import { useEffect, useState } from "react";
 
-function TaskList() {
+function UsersList() {
     const [users, setUsers] = useState([]);
     const [newUserName, setNewUserName] = useState('');
     const [selectedUser, setSelectedUser] = useState(null);
@@ -75,7 +75,7 @@ function TaskList() {
         }, [loading, users]);
     return (
         <>
-        <div>Users</div>
+        <div className="location">Users</div>
         <br></br>
 <div className="tasks-area api">
 <h2>Lista de Usuarios</h2>
@@ -83,10 +83,10 @@ function TaskList() {
 (<h1>Cargando...</h1>) :
 ( <ul>
 {users.map((user) => (
-<li className="user-id"  key={user.id}>
-{user.name}
-<button className='firstBtn' onClick={() => setSelectedUser(user)}>Editar</button>
-<button className="delete" onClick={() => handleDeleteUser(user.id)}>Eliminar</button>
+<li className="user-id" key={user.id}>
+<b>{user.name}</b>
+<button className='firstBtn' onClick={() => setSelectedUser(user)}><i className="fa-solid fa-pen-to-square"></i></button>
+<button className="delete" onClick={() => handleDeleteUser(user.id)}><i className="fa-solid fa-trash"></i></button>
 </li>
 ))}
 </ul>)}
@@ -97,9 +97,9 @@ value={newUserName}
 onChange={(e) => setNewUserName(e.target.value)}
 placeholder="Nombre del Usuario"/>
 {selectedUser ? (
-<button onClick={handleUpdateUser}>Actualizar Usuario</button>
+<button className="edit-btn-final" onClick={handleUpdateUser}>Actualizar Usuario</button>
 ) : (
-<button onClick={handleCreateUser}>Crear Usuario</button>
+<button className="edit-btn-final" onClick={handleCreateUser}>Crear Usuario</button>
 )}
 </div>
 </div>
@@ -107,4 +107,4 @@ placeholder="Nombre del Usuario"/>
     )
 }
 
-export default TaskList
+export default UsersList

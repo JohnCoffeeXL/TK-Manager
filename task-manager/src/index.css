@@ -3,10 +3,17 @@
   margin: 0;
   padding: 0;
   list-style: none;
+  overflow-x: hidden;
+  outline-color: rgba(0, 0, 0, 0.5);
+}
+
+::selection {
+  background-color: rgba(0, 0, 0, 0.5); 
+  color: #fff; 
 }
 
 body{
-  background: linear-gradient(to right, #000, #000122);
+  background: linear-gradient(240deg, #000122, #000000, #1a1a1a);
   background-attachment: fixed;
   color: #fff;
   font-family: "Barlow", sans-serif;
@@ -29,6 +36,21 @@ body{
   background: #747474;
 }
 
+.welcome{
+  margin: 15px auto;
+  border-radius: 24px;
+  max-width: 495px;
+  display: flex;
+  min-width: 100px;
+  min-height: 100px;
+}
+
+.welcome:hover{
+  transition: .85s;
+  filter: brightness(1.1);
+  transform: scale(1.04);
+}
+
 .desc{
   text-align: center;
   border: none;
@@ -37,28 +59,83 @@ body{
   padding: 15px;
 }
 
-nav{
+.navbar-toggler{
+  background-color: transparent;
+}
+
+.navbar-toggler:hover{
+  border: 1px solid #4747477e;
+  outline: none;
+}
+
+.navbar-toggler-icon{
+  color: #ffffffc9;
+}
+
+.navbar {
   display: flex;
   justify-content: center;
   padding: 10px;
   margin: 5px;
-  background: linear-gradient(to right, #000000, #000122);
+  backdrop-filter: blur(4px);
+  background-color: #79797917;
   border-bottom: 1px solid #e7e7e77a;
 }
 
-nav li{
+.navbar .nav-item {
   border: none;
   text-align: center;
 }
 
-nav li a{
+.navbar .nav-link {
   color: #e7e7e7;
   text-decoration: none;
   font-size: 1.12rem;
   margin: 5px;
 }
 
-div:nth-child(2){
+.navbar .nav-link.active {
+  font-weight: 500;
+  color: #fff;
+}
+
+.form-control{
+  background-color: #888888;
+  color: #fff;
+  border: none;
+}
+
+.btn {
+  color: #fff;
+  font-size: .91rem;
+  border-color: #000000;
+  background-color: #474747;
+  width: 30%;
+}
+
+.btn:hover {
+  background-color: #000000;
+  color: #fff;
+  border-color: #727272;
+}
+
+.navbar-brand{
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.navbar-brand:hover{
+  color: #fff;
+  transform: scale(1.1);
+  transition: .9s all;
+}
+
+.navbar-brand:focus{
+  color: #fff;
+}
+
+.location{
   text-align: center;
   font-size: 1.2rem;
   display: flex;
@@ -68,18 +145,20 @@ div:nth-child(2){
   font-weight: 600;
 }
 
-div:nth-child(2):before{
+.location::before{
   content: "<";
 }
 
-div:nth-child(2)::after{
+.location::after{
   content: ">";
 }
 .container{
   display: block;
   text-align: center;
-  margin: 20px;
+  margin: 20px auto;
   padding: 30px;
+  backdrop-filter: blur(2px);
+  background-color: #7979790a;
 }
 
 .container h1{
@@ -94,7 +173,7 @@ div:nth-child(2)::after{
 .container input,
 .container button{
   padding: 9px;
-  background-color: #00012252;
+  background-color: #4d4d4d5b;
   border-radius: 11px;
   border: 1px solid #fff;
   margin: 5px;
@@ -124,8 +203,12 @@ div:nth-child(2)::after{
   border: 1px solid #4e4e4e;
   max-width: 300px;
   padding: 15px;
-  margin: 15px auto;
+  margin: 2px auto;
   border-radius: 15px;
+}
+
+.task-content.time{
+  margin-top: 10px;
 }
 
 .task-content h2{
@@ -138,7 +221,7 @@ div:nth-child(2)::after{
 }
 
 .task-content input{
-  text-align: center;
+  text-align: left;
 }
 
 .task-content input:focus{
@@ -190,10 +273,15 @@ li{
   flex-grow: 1; 
 }
 
+.task-manager-title{
+  margin-top: -25px;
+}
+
 footer{
   text-align: center;
   border-top: 1px solid #fff;
-  padding: 15px;
+  margin: 15px 0;
+  padding: 10px;
 }
 
 footer a{
@@ -216,18 +304,18 @@ footer a{
 
 .tasks-area.api ul{
   display: flex;
-  justify-content: space-evenly !important;
-  align-content: center;
   flex-direction: column;
 }
 
 .tasks-area.api button{
   color: #fff;
-  border: 1px solid #747474;
   padding: 5px;
-  border-radius: 12px;
-  text-align: center;
   display: flex;
+}
+
+.firstBtn{
+  position: absolute;
+  margin-left: 40% !important;
 }
 
 .delete{
@@ -248,6 +336,113 @@ footer a{
   transform: scale(1.1);
   margin: 20px;
 }
+
+.edit-btn-final{
+  margin: 5px;
+  border: 1px solid #fff;
+}
+
+.edit-btn-final:hover{
+  transform: scale(1.06) !important;
+  font-weight: 500;
+}
+
+.card-section{
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+  padding: 25px;
+}
+
+.card-section .card-content {
+  position: relative;
+  backdrop-filter: blur(7px);
+  margin: 5px 7px;
+  border: 1px solid #7474747c;
+  padding: 15px;
+  width: 250px;
+  height: 280px;
+  overflow-y: hidden;
+  border-radius: 15px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.card-section .card-content::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #000000da; 
+  border-radius: 15px;
+  z-index: 1;
+}
+
+.card-section .card-content:first-child{
+  background-image: url("../src/IMG/portfolio-ia.jpg");
+}
+
+.card-section .card-content:nth-child(2){
+  background-image: url("../src/IMG/social-media.jpg");
+}
+
+.card-section div h1,
+.card-section div button,
+.card-content div a,
+.card-content p{
+  position: relative;
+  z-index: 1000;
+}
+
+.card-section div h1{
+  font-weight: 600;
+  margin-bottom: 10px;
+  font-size: 1.6rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-section div button{
+  border: #74747496 1px solid;
+  border-radius: 11px;
+  padding: 22px;
+  color: #fff;
+  font-size: 1.1rem;
+  background-color: #ffffff09;
+  backdrop-filter: blur(12px);
+  cursor: pointer;
+  margin: 35% auto;
+  display: flex;
+}
+
+.card-section div button:hover{
+  transform: scale(1.1);
+  transition: 0.8s all;
+}
+
+.card-content div i{
+  color: #fff;
+  text-align: center;
+  display: inline-block;
+  overflow: hidden;
+  margin: 10px;
+  font-size: 2rem;
+}
+
+.card-content p{
+  color: #cfcfcf;
+  width: 80%;
+  font-size: 1.1rem;
+}
+
+.card-content div i:hover{
+  transition: .7s all;
+  transform: scale(1.21);
+}
+
 
 @media(max-width: 1100px){
   .tasks-area .task-text {
@@ -316,8 +511,24 @@ footer a{
     justify-content: right;
     margin-right: 22px;
   }
+  .welcome{
+    max-width: 395px;
+  }
 }
 @media (max-width: 550px) {
+  .card-section {
+    display: flex;
+    flex-direction: column;
+    margin: -5px auto;
+  }
+
+  .card-section .card-content{
+    width: 480px;
+    height: 290px;
+    margin: 10px auto;
+    max-width: 100%;
+    max-height: 100%;
+  }
   .tasks-area li {
     display: flex;
     flex-wrap: wrap; 
@@ -337,10 +548,8 @@ footer a{
     margin: 15px;
   }
 
-  .tasks-area button {
-    font-size: .95rem;
-    width: 20px; 
-    flex-shrink: 0; 
+  .welcome{
+    max-width: 360px;
   }
 }
 
@@ -351,6 +560,22 @@ footer a{
     display: inline;
     width: 85px;
   }
+  .welcome{
+    max-width: 325px;
+  }
+  .user-id b{
+    margin-right: 100px;
+  }
+
+  .desc{
+    font-size: 1.2rem;
+  }
+
+  .firstBtn{
+    position: static;
+    margin: 0 100% 0 0;
+  }
+
   .tasks-area .task-time {
     font-size: 0.8rem;
     align-self: center;
@@ -394,7 +619,18 @@ footer a{
   .tasks-area button{
     margin-top: 14px;
   }
+  .user-id b{
+    margin-right: 10px;
+  }
+  .welcome{
+    max-width: 280px;
+  }
+
+  .desc{
+    font-size: 1.1rem;
+  }
 }
+
 
 @media(max-width: 305px){
   .container input{

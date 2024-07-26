@@ -45,15 +45,14 @@ const [taskTime, setTaskTime] = useState('-');
 
     return (
         <>
-        <div>Tasks</div>
+        <div className="location">Tasks</div>
     <div className='container'>
-    <h1>TK-Manager</h1>
-    <h5>-Hecho por Juan Agustín Avalos🙃-</h5>
+    <h1 className="task-manager-title">TK-Manager</h1><br></br>
     <div className='task-content'>
       <h2 className='task-title'>Tarea<b>*</b></h2>
       <input type="text" placeholder='Escribe la tarea a realizar...' value={newTask} onChange={handleInputChange}/>
     </div>
-    <div className='task-content'>
+    <div className='task-content time'>
     <h2 className='task-title'>Horario</h2>
     <input type="time" value={taskTime} onChange={handleTimeChange}/>
     </div>
@@ -64,7 +63,7 @@ const [taskTime, setTaskTime] = useState('-');
         <li key={index}>
         <span className="task-text">{task.text}</span>
         <span className='task-time'>{task.time}</span>
-        <button onClick={() => handleDeleteTask(index)}><i class="fa-solid fa-trash"></i></button>
+        <button onClick={() => handleDeleteTask(index)}><i className="fa-solid fa-trash"></i></button>
         </li>
       ))}
     </div>
