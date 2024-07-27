@@ -82,6 +82,7 @@ body{
   backdrop-filter: blur(4px);
   background-color: #79797917;
   border-bottom: 1px solid #e7e7e77a;
+  overflow-y: hidden;
 }
 
 .navbar .nav-item {
@@ -244,6 +245,7 @@ body{
   border: none;
   background: none;
   margin: 9px;
+  overflow-y: hidden;
 }
 
 .tasks-area button:hover{
@@ -313,6 +315,7 @@ footer a{
   color: #fff;
   padding: 5px;
   display: flex;
+  overflow-y: hidden;
 }
 
 .firstBtn{
